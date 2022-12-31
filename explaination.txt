@@ -1,0 +1,13 @@
+# Approach:
+    - For every block, we want to go through the requirementsand every requirement we want to find the closest other block with that requirement. 
+    
+    - One we have done that for every requirement and for every block.We want to pick for every block, the distance of the farthest requirement.
+
+# Explaination of the code:
+
+    - apartmentHunting is driver function which return the main required answer of the problem.
+    In this function we are mainly use two function getMinimumDistance and getMaximumDistanceToAllRequests.
+
+    - getMinimumDistance counts the minimum distance between the every requirement in given block.
+
+    - getMaximumDistanceToAllRequests counts the maximum distance from every other the requirement.
