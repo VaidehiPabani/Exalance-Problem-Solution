@@ -1,0 +1,43 @@
+
+function apartmentHunting(blocks, requests) {
+  // Write your code here.
+  let minimumDistanceToRequests = requests.map((item) => getMinimumDistance(item,blocks))
+  let maximumDistanceToAllRequests = getMaximumDistanceToAllRequests(minimumDistanceToRequests, requests, blocks)
+  return maximumDistanceToAllRequests.indexOf(Math.min(...maximumDistanceToAllRequests))
+}
+
+// function to get minimum distance
+function getMinimumDistance(item, blocks){
+  let result = blocks.map((el) => Infinity)
+  let currentClosest = Infinity
+  for(let i = 0; i < blocks.length; i++){
+    let currrentBlock = blocks[i]
+    if(currrentBlock[item]) currentClosest = i
+    result[i] = Math.abs(currentClosest - i)
+  }
+  
+  for(let j = blocks.length - 2; j >= 0; j--){
+    let currrentBlock = blocks[j]
+    if(currrentBlock[item]) currentClosest = j
+    result[j] = Math.min(result[j], Math.abs(currentClosest - j))
+  }
+  return result
+}
+
+// function to get maximum distance from thw all the given requests
+function getMaximumDistanceToAllRequests(nestedArrary,requests, blocks){
+let maximumDistance = []
+  for(let i = 0; i < blocks.length; i++){
+      let currrentMaximumDistance = -Infinity
+      for(let j = 0; j < nestedArrary.length; j++){
+        currrentMaximumDistance = Math.max(currrentMaximumDistance, nestedArrary[j][i])
+      }
+      
+      maximumDistance[i] = currrentMaximumDistance
+  }
+  return maximumDistance
+}
+
+// Do not edit the line below.
+exports.apartmentHunting = apartmentHunting;
+
